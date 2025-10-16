@@ -1,0 +1,5 @@
+2025-10-14 20:56:59.069 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-10-14 20:57:02.690 +05:30 [INF] HTTP GET /swagger responded 404 in 3652.2055 ms
+2025-10-14 22:26:33.146 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-10-14 22:26:33.372 +05:30 [INF] HTTP GET /swagger responded 404 in 249.7782 ms
+2025-10-14 22:26:36.411 +05:30 [INF] HTTP GET /swagger responded 404 in 8.8153 ms
