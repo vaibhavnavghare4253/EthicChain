@@ -10,5 +10,10 @@ public interface ICampaignService
     Task<bool> UpdateCampaignAsync(UpdateCampaignDto campaign);
     Task<IEnumerable<CampaignDto>> GetCampaignsByCategoryAsync(string category);
     Task<IEnumerable<CampaignDto>> GetActiveCampaignsAsync();
+    
+    // Transaction tracking methods
+    Task<IEnumerable<TransactionDto>> GetCampaignTransactionsAsync(Guid campaignId);
+    Task<IEnumerable<MoneyUsageDto>> GetCampaignMoneyUsageAsync(Guid campaignId);
+    Task<MoneyUsageDto> AddMoneyUsageAsync(Guid campaignId, CreateMoneyUsageDto usage);
 }
 

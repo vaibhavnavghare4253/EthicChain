@@ -1,0 +1,428 @@
+2025-10-20 15:49:31.556 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-10-20 15:49:36.156 +05:30 [INF] HTTP GET /swagger/index.html responded 404 in 4618.4540 ms
+2025-10-20 16:01:06.218 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-10-20 16:01:06.408 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 208.3165 ms
+2025-10-20 16:01:06.407 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 208.0913 ms
+2025-10-20 16:01:10.638 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:01:11.131 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:01:11.217 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 4773.5190 ms
+2025-10-20 16:01:11.359 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:01:11.380 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:01:11.483 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 266.9950 ms
+2025-10-20 16:02:37.493 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 45.7767 ms
+2025-10-20 16:02:37.494 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 46.7702 ms
+2025-10-20 16:10:29.333 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:10:29.406 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:10:29.450 +05:30 [ERR] HTTP GET /api/Campaigns responded 500 in 637.1694 ms
+2025-10-20 16:15:05.019 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 13.7627 ms
+2025-10-20 16:15:05.019 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 18.7534 ms
+2025-10-20 16:15:05.209 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:15:05.254 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:15:05.285 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 228.0541 ms
+2025-10-20 16:15:05.434 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:15:05.504 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:15:05.555 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 266.0466 ms
+2025-10-20 16:20:35.652 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-10-20 16:20:35.818 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 175.1155 ms
+2025-10-20 16:20:35.820 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 178.3669 ms
+2025-10-20 16:20:37.535 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:37.592 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:37.666 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 1731.0482 ms
+2025-10-20 16:20:37.833 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:37.851 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:37.887 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 212.7744 ms
+2025-10-20 16:20:53.511 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:53.536 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:20:53.565 +05:30 [ERR] HTTP GET /api/Campaigns responded 500 in 300.5456 ms
+2025-10-20 16:23:42.499 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 0.2806 ms
+2025-10-20 16:23:42.503 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 0.1054 ms
+2025-10-20 16:23:42.683 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:23:42.735 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:23:42.760 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 245.0169 ms
+2025-10-20 16:23:42.920 +05:30 [ERR] Error fetching campaigns from stored procedure
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:23:42.955 +05:30 [ERR] Error fetching campaigns
+Npgsql.PostgresException (0x80004005): 28P01: password authentication failed for user "postgres"
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.Internal.NpgsqlConnector.AuthenticateSASL(List`1 mechanisms, String username, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.Authenticate(String username, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.Internal.NpgsqlConnector.<Open>g__OpenCore|213_1(NpgsqlConnector conn, SslMode sslMode, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken, Boolean isFirstAttempt)
+   at Npgsql.Internal.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.OpenNewConnector(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.PoolingDataSource.<Get>g__RentAsync|34_0(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<Open>g__OpenAsync|42_0(Boolean async, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.StoredProcedureService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\StoredProcedureService.cs:line 26
+   at CharityBlockchain.API.Services.CampaignService.GetAllCampaignsAsync() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\CampaignService.cs:line 18
+   at CharityBlockchain.API.Controllers.CampaignsController.GetAll() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\CampaignsController.cs:line 28
+  Exception data:
+    Severity: FATAL
+    SqlState: 28P01
+    MessageText: password authentication failed for user "postgres"
+    File: auth.c
+    Line: 332
+    Routine: auth_failed
+2025-10-20 16:23:43.007 +05:30 [ERR] HTTP GET /api/campaigns responded 500 in 240.0852 ms
+2025-10-20 16:28:13.536 +05:30 [INF] HTTP OPTIONS /api/campaigns/1 responded 204 in 9.9496 ms
+2025-10-20 16:28:13.536 +05:30 [INF] HTTP OPTIONS /api/campaigns/1 responded 204 in 9.8774 ms
+2025-10-20 16:28:14.003 +05:30 [INF] HTTP GET /api/campaigns/1 responded 400 in 404.1723 ms
+2025-10-20 16:28:14.010 +05:30 [INF] HTTP GET /api/campaigns/1 responded 400 in 2.7479 ms

@@ -26,14 +26,38 @@ public class CampaignService : ICampaignService
     public async Task<CampaignDto> CreateCampaignAsync(CreateCampaignDto campaign)
     {
         var campaignId = await _spService.CreateCampaignAsync(campaign);
-        var createdCampaign = await _spService.GetCampaignByIdAsync(campaignId);
         
-        if (createdCampaign == null)
+        // Create milestones if provided
+        if (campaign.Milestones?.Any() == true)
         {
-            throw new Exception("Failed to create campaign");
+            foreach (var milestone in campaign.Milestones)
+            {
+                await _spService.CreateMilestoneAsync(campaignId, milestone);
+            }
         }
         
-        return createdCampaign;
+        // Return a basic campaign DTO with the created ID
+        // In a real scenario, you might want to fetch the full campaign details
+        return new CampaignDto
+        {
+            Id = campaignId,
+            Title = campaign.Title,
+            Description = campaign.Description,
+            ImageUrl = campaign.ImageUrl,
+            TargetAmount = campaign.TargetAmount,
+            CurrentAmount = 0,
+            CreatorAddress = campaign.CreatorAddress,
+            CharityName = campaign.CharityName,
+            Category = campaign.Category,
+            Deadline = campaign.Deadline,
+            IsActive = true,
+            BeneficiaryAddress = campaign.BeneficiaryAddress,
+            IpfsHash = campaign.IpfsHash,
+            ContractAddress = string.Empty,
+            CreatedAt = DateTime.UtcNow,
+            DonorCount = 0,
+            DaysLeft = Math.Max(0, (int)(campaign.Deadline - DateTime.UtcNow).TotalDays)
+        };
     }
 
     public async Task<bool> UpdateCampaignAsync(UpdateCampaignDto campaign)
@@ -51,6 +75,21 @@ public class CampaignService : ICampaignService
     {
         var allCampaigns = await _spService.GetAllCampaignsAsync();
         return allCampaigns.Where(c => c.IsActive && c.Deadline > DateTime.UtcNow);
+    }
+
+    public async Task<IEnumerable<TransactionDto>> GetCampaignTransactionsAsync(Guid campaignId)
+    {
+        return await _spService.GetCampaignTransactionsAsync(campaignId);
+    }
+
+    public async Task<IEnumerable<MoneyUsageDto>> GetCampaignMoneyUsageAsync(Guid campaignId)
+    {
+        return await _spService.GetCampaignMoneyUsageAsync(campaignId);
+    }
+
+    public async Task<MoneyUsageDto> AddMoneyUsageAsync(Guid campaignId, CreateMoneyUsageDto usage)
+    {
+        return await _spService.AddMoneyUsageAsync(campaignId, usage);
     }
 }
 

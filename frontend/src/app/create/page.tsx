@@ -1,12 +1,26 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import { useAccount } from 'wagmi';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { CreateCampaignInput } from '@/types/campaign';
+import { apiService, CreateCampaignData } from '@/lib/api';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginModal from '@/components/LoginModal';
 
 export default function CreateCampaignPage() {
   const [step, setStep] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const { address, isConnected } = useAccount();
+  const router = useRouter();
+  const { isLoggedIn, setShowLoginModal, login } = useAuth();
+  
   const [formData, setFormData] = useState<Partial<CreateCampaignInput>>({
     title: '',
     description: '',
@@ -14,7 +28,6 @@ export default function CreateCampaignPage() {
     category: 'Healthcare',
     charityName: '',
     beneficiaryAddress: '',
-    milestones: [],
   });
 
   const categories = ['Healthcare', 'Education', 'Environment', 'Emergency', 'Community', 'Animals'];
@@ -23,31 +36,95 @@ export default function CreateCampaignPage() {
     setFormData({ ...formData, [field]: value });
   };
 
-  const addMilestone = () => {
-    const milestones = formData.milestones || [];
-    milestones.push({
-      title: '',
-      description: '',
-      targetPercentage: 0,
-    });
-    setFormData({ ...formData, milestones });
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Validate file type
+      if (!file.type.startsWith('image/')) {
+        setError('Please select a valid image file');
+        return;
+      }
+      
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        setError('Image size must be less than 5MB');
+        return;
+      }
+
+      setImageFile(file);
+      
+      // Create preview
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setImagePreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+      setError(null);
+    }
   };
 
-  const updateMilestone = (index: number, field: string, value: any) => {
-    const milestones = [...(formData.milestones || [])];
-    milestones[index] = { ...milestones[index], [field]: value };
-    setFormData({ ...formData, milestones });
-  };
-
-  const removeMilestone = (index: number) => {
-    const milestones = formData.milestones?.filter((_, i) => i !== index);
-    setFormData({ ...formData, milestones });
+  const removeImage = () => {
+    setImageFile(null);
+    setImagePreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Submitting campaign:', formData);
+    
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
+    
+    if (!isConnected || !address) {
+      setError('Please connect your wallet to create a campaign');
+      return;
+    }
+
+    if (!formData.title || !formData.description || !formData.targetAmount || 
+        !formData.charityName || !formData.beneficiaryAddress || !formData.deadline) {
+      setError('Please fill in all required fields');
+      return;
+    }
+
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      // For now, we'll use a placeholder image URL
+      // In a real app, you'd upload the image to a service like IPFS or AWS S3
+      let imageUrl = '';
+      if (imageFile) {
+        // This is a placeholder - in production you'd upload to IPFS or cloud storage
+        imageUrl = imagePreview || '';
+      }
+
+      const campaignData: CreateCampaignData = {
+        title: formData.title,
+        description: formData.description,
+        targetAmount: parseFloat(formData.targetAmount),
+        category: formData.category || 'Healthcare',
+        charityName: formData.charityName,
+        beneficiaryAddress: formData.beneficiaryAddress,
+        deadline: formData.deadline.toISOString(),
+        creatorAddress: address,
+        imageUrl: imageUrl || undefined,
+        milestones: [] // Empty milestones array
+      };
+
+      const createdCampaign = await apiService.createCampaign(campaignData);
+      
+      // Redirect to the created campaign page
+      router.push(`/campaigns/${createdCampaign.id}`);
+    } catch (err) {
+      console.error('Error creating campaign:', err);
+      setError('Failed to create campaign. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -76,7 +153,7 @@ export default function CreateCampaignPage() {
           {/* Progress Steps */}
           <div className="max-w-4xl mx-auto mb-12">
             <div className="flex items-center justify-between">
-              {[1, 2, 3].map((s) => (
+              {[1, 2].map((s) => (
                 <div key={s} className="flex items-center flex-1">
                   <div className="flex items-center">
                     <div
@@ -90,11 +167,11 @@ export default function CreateCampaignPage() {
                     </div>
                     <div className="ml-3 text-left">
                       <p className={`font-semibold ${step >= s ? 'text-white' : 'text-gray-500'}`}>
-                        {s === 1 ? 'Basic Info' : s === 2 ? 'Details' : 'Milestones'}
+                        {s === 1 ? 'Basic Info' : 'Details & Image'}
                       </p>
                     </div>
                   </div>
-                  {s < 3 && (
+                  {s < 2 && (
                     <div
                       className={`flex-1 h-1 mx-4 rounded-full transition-all ${
                         step > s ? 'bg-gradient-to-r from-indigo-600 to-purple-600' : 'bg-white/10'
@@ -114,6 +191,32 @@ export default function CreateCampaignPage() {
           <div className="max-w-4xl mx-auto">
             <form onSubmit={handleSubmit}>
               <div className="glass-effect rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+                
+                {/* Wallet Connection Status */}
+                {!isLoggedIn && (
+                  <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
+                    <p className="text-yellow-400 font-semibold">
+                      ⚠️ Please sign in to create a campaign
+                    </p>
+                  </div>
+                )}
+
+                {isLoggedIn && !isConnected && (
+                  <div className="mb-6 p-4 bg-yellow-500/10 border border-yellow-500/20 rounded-xl">
+                    <p className="text-yellow-400 font-semibold">
+                      ⚠️ Please connect your wallet to create a campaign
+                    </p>
+                  </div>
+                )}
+
+                {/* Error Display */}
+                {error && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl">
+                    <p className="text-red-400 font-semibold">
+                      ❌ {error}
+                    </p>
+                  </div>
+                )}
                 {/* Step 1: Basic Info */}
                 {step === 1 && (
                   <div className="space-y-6 animate-fade-in">
@@ -182,7 +285,7 @@ export default function CreateCampaignPage() {
                   </div>
                 )}
 
-                {/* Step 2: Details */}
+                {/* Step 2: Details & Image */}
                 {step === 2 && (
                   <div className="space-y-6 animate-fade-in">
                     <div>
@@ -230,109 +333,57 @@ export default function CreateCampaignPage() {
                       />
                     </div>
 
+                    {/* Image Upload Section */}
                     <div>
                       <label className="block text-white font-semibold mb-2">
                         Campaign Image
                       </label>
-                      <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:border-purple-500 transition-all cursor-pointer">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          id="image-upload"
-                        />
-                        <label htmlFor="image-upload" className="cursor-pointer">
-                          <div className="w-16 h-16 mx-auto mb-4 bg-white/5 rounded-full flex items-center justify-center">
-                            <svg
-                              className="w-8 h-8 text-purple-400"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                              />
-                            </svg>
-                          </div>
-                          <p className="text-white mb-1">Click to upload image</p>
-                          <p className="text-gray-400 text-sm">PNG, JPG up to 10MB</p>
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Step 3: Milestones */}
-                {step === 3 && (
-                  <div className="space-y-6 animate-fade-in">
-                    <div className="mb-6">
-                      <h3 className="text-2xl font-bold text-white mb-2">Campaign Milestones</h3>
-                      <p className="text-gray-400">
-                        Set transparent goals to show donors how funds will be used
-                      </p>
-                    </div>
-
-                    {formData.milestones?.map((milestone, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4"
-                      >
-                        <div className="flex justify-between items-center mb-2">
-                          <h4 className="text-white font-semibold">Milestone {index + 1}</h4>
+                      
+                      {!imagePreview ? (
+                        <div className="border-2 border-dashed border-white/20 rounded-xl p-8 text-center hover:border-purple-500/50 transition-all cursor-pointer"
+                             onClick={() => fileInputRef.current?.click()}>
+                          <input
+                            ref={fileInputRef}
+                            type="file"
+                            accept="image/*"
+                            onChange={handleImageUpload}
+                            className="hidden"
+                          />
+                          <svg className="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                          <p className="text-gray-400 font-semibold mb-2">Upload Campaign Image</p>
+                          <p className="text-gray-500 text-sm">Click to browse or drag and drop</p>
+                          <p className="text-gray-500 text-xs mt-2">PNG, JPG, GIF up to 5MB</p>
+                        </div>
+                      ) : (
+                        <div className="relative">
+                          <img
+                            src={imagePreview}
+                            alt="Campaign preview"
+                            className="w-full h-64 object-cover rounded-xl border border-white/10"
+                          />
                           <button
                             type="button"
-                            onClick={() => removeMilestone(index)}
-                            className="text-red-400 hover:text-red-300 transition-colors"
+                            onClick={removeImage}
+                            className="absolute top-4 right-4 bg-red-500/90 hover:bg-red-600 text-white rounded-full p-2 transition-colors"
                           >
-                            Remove
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                           </button>
+                          <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm rounded-lg px-3 py-1">
+                            <p className="text-white text-sm font-semibold">
+                              {imageFile?.name}
+                            </p>
+                          </div>
                         </div>
-
-                        <input
-                          type="text"
-                          value={milestone.title}
-                          onChange={(e) => updateMilestone(index, 'title', e.target.value)}
-                          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
-                          placeholder="Milestone title"
-                        />
-
-                        <textarea
-                          value={milestone.description}
-                          onChange={(e) => updateMilestone(index, 'description', e.target.value)}
-                          rows={3}
-                          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 resize-none"
-                          placeholder="Milestone description"
-                        />
-
-                        <div>
-                          <label className="block text-white text-sm mb-2">
-                            Target Percentage of Goal
-                          </label>
-                          <input
-                            type="number"
-                            value={milestone.targetPercentage}
-                            onChange={(e) =>
-                              updateMilestone(index, 'targetPercentage', Number(e.target.value))
-                            }
-                            className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500"
-                            placeholder="25"
-                            min="0"
-                            max="100"
-                          />
-                        </div>
-                      </div>
-                    ))}
-
-                    <button
-                      type="button"
-                      onClick={addMilestone}
-                      className="w-full py-4 border-2 border-dashed border-white/20 rounded-xl text-purple-400 hover:border-purple-500 hover:bg-white/5 transition-all font-semibold"
-                    >
-                      + Add Milestone
-                    </button>
+                      )}
+                      
+                      <p className="text-gray-400 text-sm mt-2">
+                        Optional: Upload an image to represent your campaign
+                      </p>
+                    </div>
                   </div>
                 )}
 
@@ -347,7 +398,7 @@ export default function CreateCampaignPage() {
                       Previous
                     </button>
                   )}
-                  {step < 3 ? (
+                  {step < 2 ? (
                     <button
                       type="button"
                       onClick={() => setStep(step + 1)}
@@ -358,9 +409,10 @@ export default function CreateCampaignPage() {
                   ) : (
                     <button
                       type="submit"
-                      className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all ml-auto"
+                      disabled={isLoading || !isConnected}
+                      className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl text-white font-semibold hover:shadow-lg hover:shadow-purple-500/50 transition-all ml-auto disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Launch Campaign 🚀
+                      {isLoading ? 'Creating Campaign...' : 'Launch Campaign 🚀'}
                     </button>
                   )}
                 </div>
@@ -371,6 +423,13 @@ export default function CreateCampaignPage() {
       </section>
 
       <Footer />
+      
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={useAuth().showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={login}
+      />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 using CharityBlockchain.API.DTOs;
 using CharityBlockchain.API.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace CharityBlockchain.API.Controllers;
 
@@ -138,6 +139,60 @@ public class CampaignsController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error updating campaign {CampaignId}", id);
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
+    /// <summary>
+    /// Get all transactions for a campaign
+    /// </summary>
+    [HttpGet("{id}/transactions")]
+    public async Task<ActionResult<IEnumerable<TransactionDto>>> GetTransactions(Guid id)
+    {
+        try
+        {
+            var transactions = await _campaignService.GetCampaignTransactionsAsync(id);
+            return Ok(transactions);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching transactions for campaign {CampaignId}", id);
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
+    /// <summary>
+    /// Get money usage tracking for a campaign
+    /// </summary>
+    [HttpGet("{id}/usage")]
+    public async Task<ActionResult<IEnumerable<MoneyUsageDto>>> GetMoneyUsage(Guid id)
+    {
+        try
+        {
+            var usage = await _campaignService.GetCampaignMoneyUsageAsync(id);
+            return Ok(usage);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching money usage for campaign {CampaignId}", id);
+            return StatusCode(500, "Internal server error");
+        }
+    }
+
+    /// <summary>
+    /// Add money usage entry for a campaign
+    /// </summary>
+    [HttpPost("{id}/usage")]
+    public async Task<ActionResult<MoneyUsageDto>> AddMoneyUsage(Guid id, [FromBody] CreateMoneyUsageDto usage)
+    {
+        try
+        {
+            var createdUsage = await _campaignService.AddMoneyUsageAsync(id, usage);
+            return CreatedAtAction(nameof(GetMoneyUsage), new { id }, createdUsage);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error adding money usage for campaign {CampaignId}", id);
             return StatusCode(500, "Internal server error");
         }
     }

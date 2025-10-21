@@ -5,12 +5,15 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Link from 'next/link';
 import { apiService, Campaign } from '@/lib/api';
+import { useAuth } from '@/contexts/AuthContext';
+import LoginModal from '@/components/LoginModal';
 
 export default function CampaignsPage() {
   const [campaigns, setCampaigns] = useState<Campaign[]>([]);
   const [filter, setFilter] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
+  const { isLoggedIn, setShowLoginModal, login } = useAuth();
 
   // Fetch campaigns from API
   useEffect(() => {
@@ -91,6 +94,18 @@ export default function CampaignsPage() {
       campaign.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const handleDonateClick = (e: React.MouseEvent, campaignId: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+    } else {
+      // User is logged in, navigate to campaign detail page
+      window.location.href = `/campaigns/${campaignId}`;
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-purple-950 to-slate-900">
@@ -182,15 +197,14 @@ export default function CampaignsPage() {
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredCampaigns.map((campaign, index) => (
-                <Link
-                  href={`/campaigns/${campaign.id}`}
+                <div
                   key={campaign.id}
                   className="group"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  <div className="glass-effect rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20">
+                  <div className="glass-effect rounded-2xl overflow-hidden border border-white/10 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 h-full flex flex-col">
                     {/* Image */}
-                    <div className="relative h-56 overflow-hidden">
+                    <div className="relative h-56 overflow-hidden flex-shrink-0">
                       <img
                         src={campaign.imageUrl}
                         alt={campaign.title}
@@ -202,11 +216,11 @@ export default function CampaignsPage() {
                     </div>
 
                     {/* Content */}
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
+                    <div className="p-6 flex flex-col flex-grow">
+                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors line-clamp-2">
                         {campaign.title}
                       </h3>
-                      <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                      <p className="text-gray-400 text-sm mb-4 line-clamp-3 flex-grow">
                         {campaign.description}
                       </p>
 
@@ -233,7 +247,7 @@ export default function CampaignsPage() {
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center">
+                      <div className="flex justify-between items-end mt-auto">
                         <div>
                           <p className="text-2xl font-bold text-white">
                             ${(campaign.currentAmount / 1000).toFixed(1)}k
@@ -242,13 +256,24 @@ export default function CampaignsPage() {
                             of ${(campaign.targetAmount / 1000).toFixed(1)}k
                           </p>
                         </div>
-                        <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-purple-500/50 transition-all">
-                          Donate
-                        </button>
+                        <div className="flex space-x-2">
+                          <button 
+                            onClick={(e) => handleDonateClick(e, campaign.id)}
+                            className="px-4 py-2 bg-gradient-to-r from-purple-600 to-cyan-600 rounded-lg font-semibold text-white hover:shadow-lg hover:shadow-purple-500/50 transition-all text-sm"
+                          >
+                            Donate
+                          </button>
+                          <Link
+                            href={`/campaigns/${campaign.id}/transactions`}
+                            className="px-4 py-2 bg-white/10 border border-white/20 rounded-lg font-semibold text-white hover:bg-white/20 transition-all text-sm"
+                          >
+                            Track
+                          </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           )}
@@ -262,6 +287,13 @@ export default function CampaignsPage() {
       </section>
 
       <Footer />
+      
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={useAuth().showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onLogin={login}
+      />
     </div>
   );
 }

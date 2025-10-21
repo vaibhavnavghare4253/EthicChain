@@ -7,6 +7,7 @@ import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { Toaster } from 'react-hot-toast';
 import { config } from '@/config/wagmi';
 import { useState } from 'react';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
@@ -15,8 +16,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          {children}
-          <Toaster position="top-right" />
+          <AuthProvider>
+            {children}
+            <Toaster position="top-right" />
+          </AuthProvider>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

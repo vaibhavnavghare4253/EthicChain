@@ -186,7 +186,6 @@ export default function FeaturedCampaigns() {
             })}
           </div>
         )}
-        </div>
 
         <div className="text-center mt-8 md:hidden">
           <Link 

@@ -1,0 +1,64 @@
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+*.vscode/
+.vs/
+
+# Database
+*.db
+*.sqlite
+*.log
+
+# Foundry
+cache/
+out/
+broadcast/
+lib/
+
+# IPFS
+.ipfs/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.code-workspace
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.pem
+*.key
+secrets/
+

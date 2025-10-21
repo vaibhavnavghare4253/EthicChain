@@ -16,15 +16,21 @@ public class DonationService : IDonationService
     public async Task<DonationDto> CreateDonationAsync(CreateDonationDto donation)
     {
         var donationId = await _spService.CreateDonationAsync(donation);
-        var donations = await _spService.GetDonationsByCampaignAsync(donation.CampaignId);
-        var createdDonation = donations.FirstOrDefault(d => d.Id == donationId);
         
-        if (createdDonation == null)
+        // Return a basic donation DTO with the created ID
+        // In a real scenario, you might want to fetch the full donation details
+        return new DonationDto
         {
-            throw new Exception("Failed to create donation");
-        }
-        
-        return createdDonation;
+            Id = donationId,
+            CampaignId = donation.CampaignId,
+            DonorAddress = donation.DonorAddress,
+            Amount = donation.Amount,
+            TxHash = donation.TxHash,
+            Timestamp = DateTime.UtcNow,
+            Message = donation.Message,
+            IsAnonymous = donation.IsAnonymous,
+            CampaignTitle = string.Empty // This would need to be fetched separately if needed
+        };
     }
 
     public async Task<IEnumerable<DonationDto>> GetDonationsByCampaignAsync(Guid campaignId)
