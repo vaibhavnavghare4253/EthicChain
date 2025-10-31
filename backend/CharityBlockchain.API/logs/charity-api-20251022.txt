@@ -1,1 +1,184 @@
 2025-10-22 00:01:30.444 +05:30 [INF] HTTP OPTIONS /api/auth/login-with-password responded 204 in 6.2181 ms
+2025-10-22 00:01:30.950 +05:30 [INF] HTTP POST /api/auth/login-with-password responded 200 in 413.9768 ms
+2025-10-22 00:01:31.131 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 0.0823 ms
+2025-10-22 00:01:31.135 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 0.0737 ms
+2025-10-22 00:01:31.205 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 56.5967 ms
+2025-10-22 00:01:31.214 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 6.3422 ms
+2025-10-22 00:01:45.172 +05:30 [INF] HTTP OPTIONS /api/auth/me responded 204 in 0.2156 ms
+2025-10-22 00:01:45.197 +05:30 [INF] HTTP OPTIONS /api/auth/me responded 204 in 0.7328 ms
+2025-10-22 00:01:45.255 +05:30 [ERR] Failed executing DbCommand (22ms) [Parameters=[p0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c.avatar_url, c.created_at, c.display_name, c.email, c.id, c.is_verified, c.updated_at, c.wallet_address
+FROM (
+    SELECT * FROM sp_get_user_by_wallet(@p0)
+) AS c
+LIMIT 1
+2025-10-22 00:01:45.303 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'CharityBlockchain.API.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+2025-10-22 00:01:45.328 +05:30 [ERR] Error getting current user
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.UserService.GetUserByWalletAsync(String walletAddress) in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\UserService.cs:line 137
+   at CharityBlockchain.API.Controllers.AuthController.GetCurrentUser() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\AuthController.cs:line 137
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+2025-10-22 00:01:45.372 +05:30 [ERR] HTTP GET /api/auth/me responded 500 in 173.5646 ms
+2025-10-22 00:01:45.382 +05:30 [ERR] Failed executing DbCommand (3ms) [Parameters=[p0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT c.avatar_url, c.created_at, c.display_name, c.email, c.id, c.is_verified, c.updated_at, c.wallet_address
+FROM (
+    SELECT * FROM sp_get_user_by_wallet(@p0)
+) AS c
+LIMIT 1
+2025-10-22 00:01:45.397 +05:30 [ERR] An exception occurred while iterating over the results of a query for context type 'CharityBlockchain.API.Data.ApplicationDbContext'.
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+2025-10-22 00:01:45.425 +05:30 [ERR] Error getting current user
+Npgsql.PostgresException (0x80004005): 42883: function sp_get_user_by_wallet(text) does not exist
+
+POSITION: 140
+   at Npgsql.Internal.NpgsqlConnector.ReadMessageLong(Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at System.Runtime.CompilerServices.PoolingAsyncValueTaskMethodBuilder`1.StateMachineBox`1.System.Threading.Tasks.Sources.IValueTaskSource<TResult>.GetResult(Int16 token)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(Boolean async, CommandBehavior behavior, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at CharityBlockchain.API.Services.UserService.GetUserByWalletAsync(String walletAddress) in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Services\UserService.cs:line 137
+   at CharityBlockchain.API.Controllers.AuthController.GetCurrentUser() in D:\Vaibhav\PROJECT\charity app\backend\CharityBlockchain.API\Controllers\AuthController.cs:line 137
+  Exception data:
+    Severity: ERROR
+    SqlState: 42883
+    MessageText: function sp_get_user_by_wallet(text) does not exist
+    Hint: No function matches the given name and argument types. You might need to add explicit type casts.
+    Position: 140
+    File: parse_func.c
+    Line: 636
+    Routine: ParseFuncOrColumn
+2025-10-22 00:01:45.453 +05:30 [ERR] HTTP GET /api/auth/me responded 500 in 79.0846 ms
+2025-10-22 00:01:48.737 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 0.0653 ms
+2025-10-22 00:01:48.746 +05:30 [INF] HTTP GET /api/auth/me responded 401 in 1.6416 ms
+2025-10-22 00:01:48.751 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 0.0514 ms
+2025-10-22 00:01:48.778 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 6.9073 ms
+2025-10-22 00:01:48.848 +05:30 [INF] HTTP GET /api/auth/me responded 401 in 0.1854 ms
+2025-10-22 00:01:48.872 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 11.1618 ms
