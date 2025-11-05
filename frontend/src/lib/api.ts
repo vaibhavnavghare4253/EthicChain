@@ -15,7 +15,7 @@ export interface Campaign {
   isActive: boolean;
   beneficiaryAddress: string;
   contractAddress?: string;
-  ipfsHash: string;
+  ipfsHash?: string;
   createdAt: string;
   updatedAt: string;
 }
