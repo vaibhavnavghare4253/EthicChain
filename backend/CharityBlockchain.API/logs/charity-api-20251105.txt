@@ -1,0 +1,20 @@
+2025-11-05 16:54:05.033 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-11-05 16:54:05.191 +05:30 [INF] HTTP OPTIONS /api/auth/login-with-password responded 204 in 177.5577 ms
+2025-11-05 16:54:12.066 +05:30 [WRN] The query uses the 'First'/'FirstOrDefault' operator without 'OrderBy' and filter operators. This may lead to unpredictable results.
+2025-11-05 16:54:14.197 +05:30 [INF] HTTP POST /api/auth/login-with-password responded 200 in 8954.5693 ms
+2025-11-05 16:54:23.928 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 1.5666 ms
+2025-11-05 16:54:23.928 +05:30 [INF] HTTP OPTIONS /api/campaigns/active responded 204 in 3.7702 ms
+2025-11-05 16:54:24.358 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 376.3234 ms
+2025-11-05 16:54:24.562 +05:30 [INF] HTTP GET /api/campaigns/active responded 200 in 171.3509 ms
+2025-11-05 16:56:03.556 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 13.3833 ms
+2025-11-05 16:56:03.555 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 13.3573 ms
+2025-11-05 16:56:03.870 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 263.9192 ms
+2025-11-05 16:56:03.879 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 8.1588 ms
+2025-11-05 16:59:38.912 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 2.2599 ms
+2025-11-05 16:59:38.917 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 0.4145 ms
+2025-11-05 16:59:39.334 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 381.4533 ms
+2025-11-05 16:59:39.343 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 7.8371 ms
+2025-11-05 17:28:12.585 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 63.7068 ms
+2025-11-05 17:28:12.585 +05:30 [INF] HTTP OPTIONS /api/campaigns responded 204 in 63.8932 ms
+2025-11-05 17:28:15.476 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 2693.9689 ms
+2025-11-05 17:28:15.489 +05:30 [INF] HTTP GET /api/campaigns responded 200 in 9.6003 ms
